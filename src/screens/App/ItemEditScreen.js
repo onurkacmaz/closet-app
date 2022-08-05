@@ -81,7 +81,10 @@ const ItemEditScreen = ({route, navigation}) => {
   }
 
   const addPhotos = () => {
-    navigation.navigate("CameraScreen", {maxPhotosCount: MAX_PHOTOS - Object.keys(photos).length})
+    navigation.navigate("CameraScreen", {
+      maxPhotosCount: MAX_PHOTOS - Object.keys(photos).length,
+      targetScreen: 'ItemEditScreen'
+    })
   }
 
   return ( 

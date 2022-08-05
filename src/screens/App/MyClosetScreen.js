@@ -24,32 +24,6 @@ const MyClosetScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{width:'50%', padding:5}}>
-          <TouchableOpacity onPress={() => navigateMyClosetsScreen()} style={{justifyContent:'center', alignItems:'center', padding:20, borderRadius:5, backgroundColor:'#FF5C8D'}}>
-            <Text style={{color:'#fff', fontWeight:'900', fontSize:17}}>
-              <Icon size={15} style={{marginRight:5}} color="#fff" name='heart' type='font-awesome'></Icon>
-              FAVORITES
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style = {[styles.container]}>
-        <View style={{width:'50%', padding:5}}>
-          <TouchableOpacity onPress={() => navigateMyClosetsScreen()} style={{justifyContent:'center', alignItems:'center', padding:20, borderRadius:5, backgroundColor:'#90E0EF'}}>
-            <Text style={{color:'#fff', fontWeight:'900', fontSize:15}}>
-              <Icon size={15} style={{marginRight:5}} color="#fff" name='history' type='font-awesome'></Icon>
-              MY COMBINES
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{width:'50%', padding:5}}>
-          <TouchableOpacity onPress={() => navigateMyClosetsScreen()} style={{justifyContent:'center', alignItems:'center', padding:20, borderRadius:5, backgroundColor:'#B667F1'}}>
-            <Text style={{color:'#fff', fontWeight:'900', fontSize:17}}>
-              <Icon size={15} style={{marginRight:5}} color="#fff" name='search' type='font-awesome'></Icon>
-              SEARCH
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </View>
   )

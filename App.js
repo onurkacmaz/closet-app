@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Alert, LogBox, SafeAreaView, StatusBar } from 'react-native';
+import { Alert, LogBox, StatusBar } from 'react-native';
 import LoginScreen from './src/screens/Auth/LoginScreen'
 import RegisterScreen from './src/screens/Auth/RegisterScreen'
 import ResetPasswordScreen from './src/screens/Auth/ResetPasswordScreen'
@@ -23,6 +23,7 @@ import AuthApi from './src/store/Auth';
 import Loader from './src/components/Loader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginReducer } from './src/reducers/login';
+import CombineDetailScreen from './src/screens/App/CombineDetailScreen'
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
@@ -108,13 +109,8 @@ export default function App() {
 
   function Tabs() {
     return ( 
-        <Tab.Navigator screenOptions={{
-          header: () => {},
-          tabBarShowLabel:false,
-          tabBarStyle: {
-            height:60,
-            backgroundColor:'#fff',
-          }
+        <Tab.Navigator screenOptions={{ 
+          tabBarShowLabel:false
         }}>
           <Tab.Screen options={{
             title:'Explore',
@@ -140,19 +136,18 @@ export default function App() {
 
   function AppStack() {
     return (
-      <SafeAreaView style={{flex:1}}>
-        <Stack.Navigator>
-          <Stack.Screen name="Tab" options={{headerShown:false}} component={Tabs} />
-          <Stack.Screen name="ItemDetailScreen" options={{headerShown:true}} component={ItemDetailScreen} />
-          <Stack.Screen name="MyClosetsScreen" options={{headerShown:true}} component={MyClosetsScreen} />
-          <Stack.Screen name="ItemEditScreen" options={{headerShown:true}} component={ItemEditScreen} />
-          <Stack.Screen name="ClosetDetailScreen" options={{headerShown:true}} component={ClosetDetailScreen} />
-          <Stack.Screen name="ClosetEditScreen" options={{headerShown:true}} component={ClosetEditScreen} />
-          <Stack.Screen name="CameraScreen" options={{headerShown:true}} component={CameraScreen} />
-          <Stack.Screen name="PhotoPreviewScreen" options={{headerShown:true}} component={PhotoPreviewScreen} />
-          <Stack.Screen name="AccountEditScreen" options={{headerShown:true}} component={AccountEditScreen} />
+      <Stack.Navigator>
+        <Stack.Screen name="Tab" options={{headerShown:false}} component={Tabs} />
+        <Stack.Screen name="ItemDetailScreen" options={{headerShown:true}} component={ItemDetailScreen} />
+        <Stack.Screen name="MyClosetsScreen" options={{headerShown:true}} component={MyClosetsScreen} />
+        <Stack.Screen name="ItemEditScreen" options={{headerShown:true}} component={ItemEditScreen} />
+        <Stack.Screen name="ClosetDetailScreen" options={{headerShown:true}} component={ClosetDetailScreen} />
+        <Stack.Screen name="ClosetEditScreen" options={{headerShown:true}} component={ClosetEditScreen} />
+        <Stack.Screen name="CameraScreen" options={{headerShown:true}} component={CameraScreen} />
+        <Stack.Screen name="PhotoPreviewScreen" options={{headerShown:true}} component={PhotoPreviewScreen} />
+        <Stack.Screen name="AccountEditScreen" options={{headerShown:true}} component={AccountEditScreen} />
+        <Stack.Screen name="CombineDetailScreen" options={{headerShown:true}} component={CombineDetailScreen} />
       </Stack.Navigator>
-      </SafeAreaView>
     )
   }
 

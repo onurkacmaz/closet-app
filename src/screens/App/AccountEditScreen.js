@@ -31,12 +31,13 @@ const AccountEditScreen = ({route, navigation}) => {
         )
       }
     })
-  }, [])
+  })
 
   useEffect(() => {
-    getUser().then(data => {
-      setUser(JSON.parse(data))
-      setName(JSON.parse(data).name)
+    getUser().then(r => {
+      let data = JSON.parse(r)
+      setUser(data)
+      setName(data.name)
     })
   }, [])
 
