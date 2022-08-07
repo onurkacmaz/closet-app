@@ -32,6 +32,15 @@ const loginReducer = (prevState, action) => {
         token: action.token,
         isLoading: false
       }
+    case "RESET_PASSWORD":
+      return {
+        ...prevState,
+        id: action.id,
+        name: action.name,
+        email: action.email,
+        token: action.token,
+        isLoading: false
+      }  
   }
 }
 

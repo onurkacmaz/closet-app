@@ -1,22 +1,15 @@
-import { Alert, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableNativeFeedback, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
-import React, { useState } from 'react'
-import AuthApi from '../../store/Auth';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../components/context'
 
 const ResetPasswordScreen = ({route, navigation}) => {
  
   const [email, setEmail] = useState("");
 
+  const { resetPassword } = useContext(AuthContext)
+
   const handleSendEmail = () => {
-    AuthApi.sendResetPasswordEmail(email)
-    .then(r => {
-      if (r.status === 200) {
-        Alert.alert(null, 'Email will be sent. Please check your inbox.')
-        navigation.goBack()
-      }
-    })
-    .catch(err => {
-      Alert.alert('Usps!', err.response.data.errors.join("\n"))
-    })
+    resetPassword(email)
   }
 
   return (
@@ -26,7 +19,7 @@ const ResetPasswordScreen = ({route, navigation}) => {
         <Text style={{fontSize:30, fontWeight:'700'}}>RESET PASSWORD</Text>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' style={styles.input} />
+        <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' placeholderTextColor={"#666"} style={styles.input} />
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handleSendEmail()} style={styles.button}>

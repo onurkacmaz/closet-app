@@ -21,10 +21,10 @@ const RegisterScreen = () => {
           <Text style={{fontSize:30, fontWeight:'800'}}>REGISTER</Text>
         </View>
         <View style={styles.inputContainer}>
-          <TextInput value={name} onChangeText={name => setName(name)} placeholder='Name' style={styles.input} />
-          <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' style={styles.input} />
-          <TextInput value={password} onChangeText={password => setPassword(password)} placeholder='Password' style={styles.input} secureTextEntry />
-          <TextInput value={passwordRetry} onChangeText={passwordRetry => setPasswordRetry(passwordRetry)} placeholder='Password Retry' style={styles.input} secureTextEntry />
+          <TextInput value={name} onChangeText={name => setName(name)} placeholder='Name' placeholderTextColor={"#666"} style={styles.input} />
+          <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' placeholderTextColor={"#666"} style={styles.input} />
+          <TextInput value={password} onChangeText={password => setPassword(password)} placeholder='Password' placeholderTextColor={"#666"} style={styles.input} secureTextEntry />
+          <TextInput value={passwordRetry} onChangeText={passwordRetry => setPasswordRetry(passwordRetry)} placeholder='Password Retry' placeholderTextColor={"#666"} style={styles.input} secureTextEntry />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => handleRegister()} style={styles.button}>

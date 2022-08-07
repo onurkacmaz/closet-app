@@ -1,4 +1,4 @@
-import { Alert, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../components/context'
 
@@ -28,8 +28,8 @@ const LoginScreen = ({route, navigation}) => {
           <Text style={{fontSize:30, fontWeight:'800'}}>LOGIN</Text>
         </View>
         <View style={styles.inputContainer}>
-          <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' style={styles.input} />
-          <TextInput value={password} onChangeText={password => setPassword(password)} placeholder='Password' style={styles.input} secureTextEntry />
+          <TextInput value={email} onChangeText={email => setEmail(email)} keyboardType='email-address' placeholder='Email' placeholderTextColor={"#666"} style={styles.input} />
+          <TextInput value={password} onChangeText={password => setPassword(password)} placeholder='Password' placeholderTextColor={"#666"} style={styles.input} secureTextEntry />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => handleSignIn()} style={styles.button}>

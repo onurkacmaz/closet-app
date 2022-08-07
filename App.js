@@ -56,6 +56,7 @@ export default function App() {
         })
       })
       .catch(err => {
+        console.log(err.response.data)
         Alert.alert('Usps!', err.response.data.errors.join("\n"))
       }).finally(() => {
         setIsLoading(false)
@@ -77,6 +78,19 @@ export default function App() {
         AsyncStorage.setItem('user', JSON.stringify(res.data.data)).then(r => {
           dispatch({type: 'LOGIN', email: email, token: res.data.data.token, id: res.data.data.id})
         })
+      })
+      .catch(err => {
+        Alert.alert('Usps!', err.response.data.errors.join("\n"))
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+    },
+    resetPassword: (email) => {
+      setIsLoading(true)
+      AuthApi.sendResetPasswordEmail(email)
+      .then(res => {
+        Alert.alert('Usps!', err.response.data.message)
       })
       .catch(err => {
         Alert.alert('Usps!', err.response.data.errors.join("\n"))
