@@ -47,8 +47,6 @@ const ProfileScreen = ({route, navigation}) => {
       let data = JSON.parse(r)
       AccountApi.updateProfilePicture(data.id, photo.base64)
       .then(r => {
-
-        console.log(r.data.url);
         let u = user
         u.photo = r.data.url
         setUser(u)

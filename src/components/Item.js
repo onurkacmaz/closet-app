@@ -11,7 +11,7 @@ const Item = (props) => {
   return (
     <View style={[styles.box, {width: ((width - 50) / 4)}]}>
 			<Image style={{borderRadius:5, height:100, flex:1, resizeMode:'cover'}} source={{
-				uri: Config.domain + item.photos[0]?.url,
+				uri: Config.domain + item.photos[0]?.url ?? null,
 				height: 100,
 				width: '100%'
 			}} />

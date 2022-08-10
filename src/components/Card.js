@@ -9,6 +9,10 @@ const Card = (props) => {
   let user = combine.user
   let combineItems = combine.combine_items
 
+  const sumCombineLikes = () => {
+    console.log(combine);
+  }
+
   return (
     <View style={styles.card}>
       <View style={styles.userImageContainer}>
@@ -25,7 +29,7 @@ const Card = (props) => {
           if(i == 3) {
             return (
               <View key={i} style={{width:'50%'}}>
-                <Image style={styles.cardImage} source={{uri: Config.domain + combineItem.item.photos[0].url, width:'100%', height:80}}/>
+                <Image key={i} style={styles.cardImage} source={{uri: Config.domain + combineItem.item.photos[0].url, width:'100%', height:80}}/>
                 <View style={{backgroundColor:'rgba(0,0,0,0.6)', position:'absolute', width:'100%', height:'100%', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
                   <Icon type="font-awesome" name='plus-circle' size={30} color="#ccc" />
                   <Text style={{marginLeft:5, color:'#fff', fontWeight:'900'}}>{Object.keys(combineItems).length - 4}</Text>
@@ -37,14 +41,14 @@ const Card = (props) => {
       }
       </View>
       <View style={styles.cardContent}>
-        <TouchableOpacity style={styles.cardAction}>
+        <View style={styles.cardAction}>
           <Icon type='font-awesome' size={20} name="reply" color={"#2FA4FF"}></Icon>
-          <Text style={{marginLeft:10, fontWeight:'900'}}>10</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.cardAction}>
+          <Text style={{marginLeft:10, fontWeight:'900'}}>42</Text>
+        </View>
+        <View style={styles.cardAction}>
           <Icon type='font-awesome' size={20} name="heart" color={"#FF1818"}></Icon>
-          <Text style={{marginLeft:10, fontWeight:'900'}}>50</Text>
-        </TouchableOpacity>
+          <Text style={{marginLeft:10, fontWeight:'900'}}>{combine.combine_reactions_count}</Text>
+        </View>
       </View>
     </View>
   )

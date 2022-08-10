@@ -2,20 +2,20 @@ import { Alert, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View
 import ItemPhoto from '../../components/ItemPhoto';
 import ImageSlider from '../../components/ImageSlider';
 import ClosetTag from '../../components/ClosetTag';
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { Icon } from 'react-native-elements';
 import ItemApi from '../../store/Item';
 import Loader from '../../components/Loader'
 
 const ItemDetailScreen = ({navigation, route}) => {
 
-  const scrollRef = useRef();
   const { width } = Dimensions.get('window');
 
   const [item, setItem] = useState({})
   let [closet, setCloset] = useState({});
-  const [currentFeaturedImage, setCurrentFeaturedImage] = useState({});
+
   const [photos, setPhotos] = useState([])
+  const [ps, setPs] = useState([])
   const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
@@ -26,8 +26,8 @@ const ItemDetailScreen = ({navigation, route}) => {
       setLoading(true)
       ItemApi.get(route.params.item.id).then(r => {
         let data = r.data.data
-        setCurrentFeaturedImage(data.photos[0])
         setPhotos(data.photos)
+        setPs(data.photos)
         setCloset(data.closet)
         setItem(data)
       }).finally(() => {
@@ -37,12 +37,14 @@ const ItemDetailScreen = ({navigation, route}) => {
     return initialize
   })
 
-  const changeFeaturedImage = (photo) => {
-    scrollRef.current?.scrollTo({
-      y: 0,
-      animated: true,
+  const changeFeaturedImage = (photo, index) => {
+    let filteredPhotos = ps.filter((p, i) => {
+      return i != index
     })
-    setCurrentFeaturedImage(photo)
+
+    filteredPhotos.push(photo)
+    filteredPhotos = filteredPhotos.reverse()
+    setPhotos(filteredPhotos)
   }
 
   const navigateClosetDetail = () => {
@@ -72,7 +74,7 @@ const ItemDetailScreen = ({navigation, route}) => {
   }
 
   function GetImageSlider() {
-    return <ImageSlider scrollTo={currentFeaturedImage} enableZoom={true} images={photos}/>
+    return <ImageSlider enableZoom={true} images={photos}/>
   }
 
   if (loading) {
@@ -82,7 +84,7 @@ const ItemDetailScreen = ({navigation, route}) => {
   }
   
   return (
-    <ScrollView ref={scrollRef}>
+    <ScrollView>
       <GetImageSlider />
       <View style={styles.actionBar}>
         <TouchableOpacity onPress={() => navigateItemEditScreen()} style={[{backgroundColor:'#00B4D8'},styles.actionButton]}>
@@ -99,11 +101,11 @@ const ItemDetailScreen = ({navigation, route}) => {
           <Text style={{fontWeight:'700', fontSize:25}}>{item.name}</Text>
           <Text style={{marginTop:10, fontWeight:'500', color:'#999', fontSize:15}}>{item.note}</Text>
         </View>
-        <Text style={{marginTop:10, marginTop:20, fontWeight:'700', fontSize:20}}>Other Photos</Text>
+        <Text style={{marginTop:10, marginTop:20, fontWeight:'700', fontSize:20}}>Photos</Text>
         <View style = {[styles.container, {width: width, marginTop:10}]}>
           {
-            photos.map((photo) => {
-              return <ItemPhoto onPress={() => changeFeaturedImage(photo)} key={photo.id} item={photo} />
+            ps.map((photo, i) => {
+              return <ItemPhoto onPress={() => changeFeaturedImage(photo, i)} key={photo.id} item={photo} />
             })
           }
         </View>
